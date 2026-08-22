@@ -1,55 +1,85 @@
-# Vidhya Steel Furnitures — Website (v2, enhanced)
+# Vidhya Steel Furnitures — Website (v3)
 
-Same single-file, no-build, no-server approach as before, with more
-sections modeled on patterns from established B2B manufacturer sites
-(trust badges, tabbed category browser, benefit highlights, FAQ,
-structured quote request) — all original content for Vidhya, not copied
-from anywhere.
+Same single-file, no-build, no-server site as before. This version
+replaces every emoji with real icons and adds subtle motion — see below
+for exactly what changed and why.
 
-## What's new vs the first version
+## What's new vs v2
 
-- **Top trust bar** — GST registered, manufacturer since 2017, location
-- **Tabbed category browser** — click a category (Furniture, Wooden
-  Furniture, Stainless Steel Fabrication, etc.) to see its items, instead
-  of one long scrolling grid
-- **Why Choose Us** — 6 benefit callouts (custom fabrication, durable
-  build, competitive pricing, quick turnaround, GST billing, local service)
-- **FAQ accordion** — 6 original questions relevant to furniture/steel
-  fabrication buyers
-- **Quote request form** — collects name, requirement, and details, then
-  opens WhatsApp with a ready-to-send message. Nothing is stored or sent
-  anywhere except through WhatsApp itself when the visitor chooses to send it.
+- **22 hand-drawn SVG icons** replacing every emoji (🪑🔩💼📞 etc.). Emoji
+  render inconsistently across Windows/Mac/Android/older phones and look
+  unpolished at small sizes — actual icons look the same everywhere and
+  scale cleanly.
+- **Scroll-reveal animation** — About Us cards, Why Choose Us cards, and
+  the contact/quote cards fade in as you scroll to them.
+- **A pulse animation** on the main "Get a Free Quote" button only — one
+  accent, not applied everywhere, so it draws the eye without feeling busy.
 
-## What I deliberately left out
+## Why there are still no product photos
 
-Client logos and customer testimonials — sections like that only work if
-they're real. I don't have real customer names, quotes, or logos to use,
-and inventing them would be actively misleading to anyone visiting the
-site. Once you have a few real customers willing to be quoted or named,
-tell me and I'll add a proper section for it — it's a genuinely good
-addition, just not one to fake in the meantime.
+I don't have real photos of your actual furniture, fabrication work, or
+inventory. Using generic stock photos and presenting them as your products
+would misrepresent what you actually sell — worse than no photo at all if
+a customer shows up expecting exactly what they saw online. The icons here
+are illustrative category markers, not a substitute for real photography.
+
+**When you're ready to add real photos:** take a few clear photos (phone
+camera is fine) of actual finished pieces — good lighting, plain
+background if possible — and send them over. I can drop them straight
+into the hero section and each product category card. This is a
+completely reasonable thing to add once you have them; it just shouldn't
+be faked in the meantime.
+
+## A bug I found and fixed while building this
+
+My first pass at the scroll-reveal animation would have permanently
+hidden the About Us, Why Choose Us, and contact content if JavaScript
+ever failed to load for any visitor (blocked script, network hiccup,
+disabled JS). I rebuilt it using a standard "progressive enhancement"
+pattern: the very first thing a tiny inline script does is add a `js`
+class to the page, and the fade-in CSS rule only applies underneath that
+class. If JavaScript never runs, that class never gets added, and the
+content is simply visible immediately — animation is purely a bonus, never
+a requirement to see anything.
+
+I specifically tested this exact scenario (JavaScript completely disabled)
+to confirm it, rather than assuming it was fine.
 
 ## Testing performed
 
-Every interactive element was tested with real simulated clicks (not
-direct function calls) in a proper JS engine:
-- All 7 category tabs switch correctly and show the right items
-- FAQ items open and close correctly, independently
-- The quote form builds the correct WhatsApp message from name +
-  requirement + details, and correctly refuses to proceed if the name
-  field is empty
-- Mobile menu toggle opens/closes
-- Zero JavaScript errors across the full interaction sequence
+Same rigorous approach as before — real simulated clicks, not direct
+function calls, run against the actual DOM in a real JS engine (jsdom):
+- All 7 category tabs still switch correctly with icons in place
+- FAQ accordion still opens/closes independently
+- Quote request form still builds the correct WhatsApp message
+- Mobile menu toggle still works
+- All 18 icon placeholders confirmed to contain real, correctly-rendered SVG
+- The "JavaScript disabled" fallback confirmed to keep all content visible
+- Zero JavaScript errors across the full test run
+
+One honest limitation: my own screenshot tooling (an old, ~15-year-old
+rendering engine) failed to visually display the icons in a full-page
+screenshot, despite the identical technique working in isolation. I
+didn't take that at face value — I inspected the actual DOM directly via
+a modern, real JS engine (jsdom) and confirmed every icon renders
+correctly as valid SVG. Worth a quick visual glance yourself once this is
+live, simply because I couldn't get a clean screenshot from my end — not
+because I have reason to think anything is actually wrong.
 
 ## Deploying this
 
-Identical process to before — see the earlier deployment steps for
-`vidhya.smithtechnologysolutions.com` (Vercel, Framework Preset "Other",
-add the subdomain, add the CNAME record it gives you). This file can
-directly replace the previous `index.html` in that same repo.
+Identical process to before — this `index.html` (plus the same 3 image
+files) can directly replace what's currently live in your
+`vidhya-website` repo:
 
-## Updating content later
+```
+cd vidhya-website
+git pull
+# copy the new index.html over the old one
+git add -A
+git commit -m "v3: real SVG icons, scroll animations"
+git push
+```
 
-Everything is data-driven from arrays near the bottom of the `<script>`
-tag — `PRODUCTS`, `WHY`, and `FAQ`. Edit an array entry and the relevant
-section rebuilds itself; nothing else needs to change.
+Vercel redeploys automatically on push if it's already connected to this
+repo — no dashboard steps needed for this update specifically.

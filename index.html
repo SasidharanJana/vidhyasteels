@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>document.documentElement.classList.add('js');</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vidhya Steel Furnitures — Furniture &amp; Steel Fabrication, Perinthalmanna, Kerala</title>
@@ -72,6 +73,29 @@
   .btn-whatsapp:hover{background:#20bd5a;}
   .btn-lg{padding:13px 26px;font-size:15px;}
   .btn-block{width:100%;justify-content:center;}
+  .btn svg{width:16px;height:16px;flex-shrink:0;}
+
+  /* Icon-based visuals -- replacing emoji, which render inconsistently
+     across Windows/Mac/Android and look unpolished at small sizes. These
+     are hand-drawn line icons (Feather/Lucide style), not stock photography --
+     see the chat for why real product photos aren't dropped in here yet. */
+  .about-card .icon svg, .cat-item-card .picon svg, .why-card .wicon svg,
+  .contact-row .cicon svg, .vitem .vicon svg{width:50%;height:50%;}
+
+  /* Scroll-reveal animation -- fades content in as it enters the viewport.
+     Scoped under html.js so that if JavaScript fails to load entirely
+     (blocked, network issue, disabled), .reveal content is NEVER hidden --
+     the opacity:0 starting state only ever applies once JS has actually
+     confirmed it's running and will un-hide things. */
+  html.js .reveal{opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease;}
+  html.js .reveal.in{opacity:1;transform:translateY(0);}
+
+  @keyframes pulse-ring{
+    0%{box-shadow:0 0 0 0 rgba(37,211,102,.5);}
+    70%{box-shadow:0 0 0 10px rgba(37,211,102,0);}
+    100%{box-shadow:0 0 0 0 rgba(37,211,102,0);}
+  }
+  .btn-whatsapp.pulse{animation:pulse-ring 2.2s infinite;}
 
   /* Hero */
   .hero{background:linear-gradient(180deg,#fff 0%,var(--paper) 100%);padding:60px 20px;}
@@ -110,6 +134,11 @@
   .cat-tab{background:#fff;border:1.5px solid var(--border);border-radius:22px;padding:9px 18px;font-size:13px;font-weight:600;color:var(--steel-mid);cursor:pointer;}
   .cat-tab:hover{border-color:var(--teal);}
   .cat-tab.active{background:var(--teal);border-color:var(--teal);color:#fff;}
+  .tab-icon{display:inline-flex;width:15px;height:15px;margin-right:6px;vertical-align:-2px;}
+  .tab-icon svg{width:100%;height:100%;}
+  .inline-icon{display:inline-flex;width:14px;height:14px;vertical-align:-2px;margin-right:5px;}
+  .inline-icon svg{width:100%;height:100%;}
+  .menu-toggle .inline-icon{width:22px;height:22px;margin-right:0;vertical-align:middle;}
   .cat-panel{display:none;}
   .cat-panel.active{display:block;}
   .cat-items-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
@@ -131,7 +160,8 @@
   .faq-list{max-width:760px;margin:0 auto;}
   .faq-item{background:#fff;border:1px solid var(--border);border-radius:10px;margin-bottom:10px;overflow:hidden;}
   .faq-q{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;cursor:pointer;font-weight:600;font-size:14.5px;color:var(--steel-deep);}
-  .faq-q .chev{transition:transform .2s;color:var(--teal);font-size:14px;}
+  .faq-q .chev{transition:transform .2s;color:var(--teal);width:16px;height:16px;flex-shrink:0;}
+  .faq-q .chev svg{width:100%;height:100%;}
   .faq-item.open .faq-q .chev{transform:rotate(180deg);}
   .faq-a{max-height:0;overflow:hidden;transition:max-height .25s ease;font-size:13.5px;color:var(--slate);}
   .faq-item.open .faq-a{max-height:200px;}
@@ -181,11 +211,11 @@
 <div class="topbar">
   <div class="container">
     <div class="badges">
-      <span>✓ GST Registered</span>
-      <span>🏭 Manufacturer Since 2017</span>
-      <span>📍 Perinthalmanna, Kerala</span>
+      <span><i class="inline-icon" data-icon="check"></i>GST Registered</span>
+      <span><i class="inline-icon" data-icon="factory"></i>Manufacturer Since 2017</span>
+      <span><i class="inline-icon" data-icon="pin"></i>Perinthalmanna, Kerala</span>
     </div>
-    <div><a href="tel:+919061820076">📞 +91 90618 20076</a></div>
+    <div><a href="tel:+919061820076"><i class="inline-icon" data-icon="phone"></i>+91 90618 20076</a></div>
   </div>
 </div>
 
@@ -207,9 +237,9 @@
       <a href="#contact">Contact</a>
     </nav>
     <div class="header-cta">
-      <a href="tel:+919061820076" class="btn btn-outline">📞 Call Now</a>
+      <a href="tel:+919061820076" class="btn btn-outline"><i class="inline-icon" data-icon="phone"></i>Call Now</a>
       <a href="#contact" class="btn btn-primary">Get Quote</a>
-      <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu"><i class="inline-icon" data-icon="menu"></i></button>
     </div>
   </div>
 </header>
@@ -221,7 +251,7 @@
       <h1>Quality Furniture &amp; Steel Fabrication, Built to Last</h1>
       <p class="lede">Vidhya Steel Furnitures manufactures durable furniture, custom stainless steel fabrication, and office workstations for homes and businesses across Kerala — direct from the manufacturer, at fair prices.</p>
       <div class="hero-ctas">
-        <a href="https://wa.me/919061820076?text=Hi%2C%20I%27d%20like%20a%20quote%20for%20your%20products." target="_blank" rel="noopener" class="btn btn-whatsapp btn-lg">💬 Get a Free Quote</a>
+        <a href="https://wa.me/919061820076?text=Hi%2C%20I%27d%20like%20a%20quote%20for%20your%20products." target="_blank" rel="noopener" class="btn btn-whatsapp btn-lg pulse"><i class="inline-icon" data-icon="chat"></i>Get a Free Quote</a>
         <a href="#products" class="btn btn-outline btn-lg">Browse Products</a>
       </div>
       <div class="hero-stats">
@@ -246,10 +276,10 @@
       <p>Vidhya Steel Furnitures is a manufacturer based in Perinthalmanna, Kerala, delivering quality furniture, steel fabrication, and office furnishing products and services — backed by years of hands-on manufacturing experience.</p>
     </div>
     <div class="about-grid">
-      <div class="about-card"><div class="icon">🏭</div><div class="label">Nature of Business</div><div class="value">Manufacturer</div></div>
-      <div class="about-card"><div class="icon">⚖️</div><div class="label">Legal Status</div><div class="value">Proprietorship</div></div>
-      <div class="about-card"><div class="icon">👤</div><div class="label">Proprietor</div><div class="value">Prakash K</div></div>
-      <div class="about-card"><div class="icon">📅</div><div class="label">GST Registered Since</div><div class="value">2017</div></div>
+      <div class="about-card reveal"><div class="icon" data-icon="factory"></div><div class="label">Nature of Business</div><div class="value">Manufacturer</div></div>
+      <div class="about-card reveal"><div class="icon" data-icon="scale"></div><div class="label">Legal Status</div><div class="value">Proprietorship</div></div>
+      <div class="about-card reveal"><div class="icon" data-icon="user"></div><div class="label">Proprietor</div><div class="value">Prakash K</div></div>
+      <div class="about-card reveal"><div class="icon" data-icon="calendar"></div><div class="label">GST Registered Since</div><div class="value">2017</div></div>
     </div>
   </div>
 </section>
@@ -294,30 +324,30 @@
       <p>Reach us directly, or send your requirement below and we'll get back to you on WhatsApp.</p>
     </div>
     <div class="contact-wrap">
-      <div class="contact-card">
+      <div class="contact-card reveal">
         <div class="contact-row">
-          <div class="cicon">👤</div>
+          <div class="cicon" data-icon="user"></div>
           <div><div class="clabel">Proprietor</div><div class="cvalue">Prakash K</div></div>
         </div>
         <div class="contact-row">
-          <div class="cicon">📞</div>
+          <div class="cicon" data-icon="phone"></div>
           <div><div class="clabel">Phone</div><div class="cvalue"><a href="tel:+919061820076">+91 90618 20076</a></div></div>
         </div>
         <div class="contact-row">
-          <div class="cicon">📍</div>
+          <div class="cicon" data-icon="pin"></div>
           <div><div class="clabel">Location</div><div class="cvalue">Perinthalmanna, Malappuram District, Kerala</div></div>
         </div>
         <div class="contact-row">
-          <div class="cicon">🏢</div>
+          <div class="cicon" data-icon="building"></div>
           <div><div class="clabel">Business Type</div><div class="cvalue">Manufacturer · Proprietorship · GST Registered</div></div>
         </div>
         <div style="margin-top:20px;display:flex;flex-direction:column;gap:10px;">
-          <a href="https://wa.me/919061820076?text=Hi%2C%20I%27m%20interested%20in%20your%20products." target="_blank" rel="noopener" class="btn btn-whatsapp btn-block">💬 Message on WhatsApp</a>
-          <a href="https://www.google.com/maps/search/?api=1&query=Perinthalmanna%2C%20Kerala" target="_blank" rel="noopener" class="btn btn-outline btn-block">🗺️ View on Google Maps</a>
+          <a href="https://wa.me/919061820076?text=Hi%2C%20I%27m%20interested%20in%20your%20products." target="_blank" rel="noopener" class="btn btn-whatsapp btn-block"><i class="inline-icon" data-icon="chat"></i>Message on WhatsApp</a>
+          <a href="https://www.google.com/maps/search/?api=1&query=Perinthalmanna%2C%20Kerala" target="_blank" rel="noopener" class="btn btn-outline btn-block"><i class="inline-icon" data-icon="map"></i>View on Google Maps</a>
         </div>
       </div>
 
-      <div class="quote-card">
+      <div class="quote-card reveal">
         <h3>Request a Quote</h3>
         <div class="sub">Fill this in and it opens WhatsApp with your details ready to send — nothing is stored or sent anywhere else.</div>
         <form id="quoteForm">
@@ -335,7 +365,7 @@
             </select>
           </div>
           <div class="field"><label>Details</label><textarea id="qMessage" placeholder="Quantity, size, timeline, or anything else that helps us quote accurately"></textarea></div>
-          <button type="submit" class="btn btn-whatsapp btn-block">💬 Send via WhatsApp</button>
+          <button type="submit" class="btn btn-whatsapp btn-block"><i class="inline-icon" data-icon="chat"></i>Send via WhatsApp</button>
         </form>
       </div>
     </div>
@@ -349,35 +379,68 @@
 </footer>
 
 <script>
+  // ---- Icon library -----------------------------------------------------
+  // Hand-drawn line icons replacing emoji, which render inconsistently
+  // across Windows/Mac/Android/older phones and look unpolished at small
+  // sizes. Each is a plain inline SVG, sized by its container (see CSS),
+  // colored via currentColor so it always matches surrounding text.
+  const S = 'viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"';
+  const ICONS = {
+    check: `<svg ${S}><polyline points="20 6 9 17 4 12"/></svg>`,
+    factory: `<svg ${S}><path d="M3 21V10l5 3.5V10l5 3.5V10l5 3.5V21H3Z"/><path d="M8 21v-4h3v4"/><path d="M6 6h2v3H6z"/></svg>`,
+    pin: `<svg ${S}><path d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.3"/></svg>`,
+    phone: `<svg ${S}><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 8.6 8.6 0 0 0 2.7.43 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A16 16 0 0 1 3 6a1 1 0 0 1 1-1h3.6a1 1 0 0 1 1 1 8.6 8.6 0 0 0 .43 2.7 1 1 0 0 1-.25 1Z"/></svg>`,
+    menu: `<svg ${S}><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>`,
+    chat: `<svg ${S}><path d="M21 11.5a8.38 8.38 0 0 1-4.34 7.35A8.5 8.5 0 0 1 3 16.5l-2 2 1.15-3.45A8.5 8.5 0 1 1 21 11.5Z"/></svg>`,
+    scale: `<svg ${S}><line x1="12" y1="3" x2="12" y2="21"/><path d="M5 7h5m4 0h5"/><path d="M3 7l3 6a3 3 0 0 0 6 0L9 7"/><path d="M15 7l3 6a3 3 0 0 0 6 0l-3-6"/></svg>`,
+    user: `<svg ${S}><circle cx="12" cy="8" r="3.6"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg>`,
+    calendar: `<svg ${S}><rect x="3.5" y="5" width="17" height="16" rx="2"/><line x1="3.5" y1="10" x2="20.5" y2="10"/><line x1="8" y1="3" x2="8" y2="7"/><line x1="16" y1="3" x2="16" y2="7"/></svg>`,
+    building: `<svg ${S}><rect x="4" y="3" width="16" height="18" rx="1"/><line x1="8" y1="7" x2="8" y2="7.01"/><line x1="12" y1="7" x2="12" y2="7.01"/><line x1="16" y1="7" x2="16" y2="7.01"/><line x1="8" y1="11" x2="8" y2="11.01"/><line x1="12" y1="11" x2="12" y2="11.01"/><line x1="16" y1="11" x2="16" y2="11.01"/><line x1="8" y1="15" x2="8" y2="15.01"/><line x1="12" y1="15" x2="12" y2="15.01"/><line x1="16" y1="15" x2="16" y2="15.01"/><path d="M9.5 21v-3h5v3"/></svg>`,
+    map: `<svg ${S}><path d="M9 3 3 5.5v15L9 18l6 2.5 6-2.5v-15L15 5.5 9 3Z"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="5.5" x2="15" y2="20.5"/></svg>`,
+    chair: `<svg ${S}><path d="M6 9V4h12v5"/><path d="M5 9h14l-1 6H6L5 9Z"/><line x1="7" y1="15" x2="6" y2="21"/><line x1="17" y1="15" x2="18" y2="21"/></svg>`,
+    wood: `<svg ${S}><rect x="3" y="8" width="18" height="8" rx="2"/><path d="M7 8v8M12 8v8M17 8v8"/></svg>`,
+    home: `<svg ${S}><path d="M4 11.5 12 4l8 7.5"/><path d="M6 10v10h12V10"/><path d="M10 20v-6h4v6"/></svg>`,
+    wrench: `<svg ${S}><path d="M14.7 6.3a4 4 0 1 0-5.4 5.4L4 17v3h3l5.3-5.3a4 4 0 0 0 5.4-5.4l-2.1 2.1-2-2Z"/></svg>`,
+    briefcase: `<svg ${S}><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M8 8V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="3" y1="13" x2="21" y2="13"/></svg>`,
+    box: `<svg ${S}><path d="M21 8 12 3 3 8v8l9 5 9-5V8Z"/><path d="M3 8l9 5 9-5"/><line x1="12" y1="13" x2="12" y2="21"/></svg>`,
+    layers: `<svg ${S}><path d="M12 3 3 8l9 5 9-5-9-5Z"/><path d="M3 12l9 5 9-5"/><path d="M3 16l9 5 9-5"/></svg>`,
+    tool: `<svg ${S}><path d="M14.7 6.3a4 4 0 1 0-5.4 5.4L4 17v3h3l5.3-5.3a4 4 0 0 0 5.4-5.4l-2.1 2.1-2-2Z"/><path d="M17 3l4 4"/></svg>`,
+    strength: `<svg ${S}><path d="M6.5 3v4a3 3 0 0 0 3 3h1"/><path d="M10.5 10v6a2.5 2.5 0 0 0 5 0v-2.5"/><path d="M15.5 13.5V7a2 2 0 0 0-4 0"/></svg>`,
+    rupee: `<svg ${S}><line x1="6" y1="4" x2="18" y2="4"/><line x1="6" y1="8" x2="18" y2="8"/><path d="M6 8c5 0 8 1.7 8 4.5S11 17 6 17"/><line x1="6" y1="17" x2="16" y2="21"/></svg>`,
+    zap: `<svg ${S}><polygon points="13 2 4 14 11 14 10 22 20 9 13 9 13 2"/></svg>`,
+    receipt: `<svg ${S}><path d="M6 3h12v18l-2.5-1.5L13 21l-2.5-1.5L8 21l-2-1.5V3Z"/><line x1="9" y1="7" x2="15" y2="7"/><line x1="9" y1="11" x2="15" y2="11"/><line x1="9" y1="15" x2="13" y2="15"/></svg>`,
+    chevron: `<svg ${S}><polyline points="6 9 12 15 18 9"/></svg>`,
+  };
+
   // ---- Product catalog -- single source of truth for both the hero
   // visual list and the tabbed category browser below. ----
   const PRODUCTS = [
-    { icon: '🪑', title: 'Furniture', items: ['Steel Furniture Dealers', 'Furniture Dealers', 'Furniture Manufacturers'] },
-    { icon: '🪵', title: 'Wooden Furniture', items: ['Wooden Furniture Dealers', 'Imported Wooden Furniture Dealers'] },
-    { icon: '🏠', title: 'Home Furnishing Accessory', items: ['Steel Home Accessories'] },
-    { icon: '🔩', title: 'Stainless Steel Fabrication', items: ['Stainless Steel Customised Fabrication'] },
-    { icon: '💼', title: 'Office Workstations', items: ['Furniture Dealers (Economy)'] },
-    { icon: '📦', title: 'Steel Box', items: ['Steel Box'] },
-    { icon: '🧱', title: 'Steel Sheets', items: ['Steel Sheet'] },
+    { icon: 'chair', title: 'Furniture', items: ['Steel Furniture Dealers', 'Furniture Dealers', 'Furniture Manufacturers'] },
+    { icon: 'wood', title: 'Wooden Furniture', items: ['Wooden Furniture Dealers', 'Imported Wooden Furniture Dealers'] },
+    { icon: 'home', title: 'Home Furnishing Accessory', items: ['Steel Home Accessories'] },
+    { icon: 'wrench', title: 'Stainless Steel Fabrication', items: ['Stainless Steel Customised Fabrication'] },
+    { icon: 'briefcase', title: 'Office Workstations', items: ['Furniture Dealers (Economy)'] },
+    { icon: 'box', title: 'Steel Box', items: ['Steel Box'] },
+    { icon: 'layers', title: 'Steel Sheets', items: ['Steel Sheet'] },
   ];
 
   function waLink(text){ return 'https://wa.me/919061820076?text=' + encodeURIComponent(text); }
 
   // Hero visual list (compact, first 5 categories)
   document.getElementById('heroVisualList').innerHTML = PRODUCTS.slice(0, 5).map(p => `
-    <div class="vitem"><div class="vicon">${p.icon}</div>${p.title}</div>
+    <div class="vitem"><div class="vicon">${ICONS[p.icon]}</div>${p.title}</div>
   `).join('');
 
   // Category tabs + panels
   const tabsEl = document.getElementById('catTabs');
   const panelsEl = document.getElementById('catPanels');
-  tabsEl.innerHTML = PRODUCTS.map((p, i) => `<button class="cat-tab${i===0?' active':''}" data-tab="${i}">${p.icon} ${p.title}</button>`).join('');
+  tabsEl.innerHTML = PRODUCTS.map((p, i) => `<button class="cat-tab${i===0?' active':''}" data-tab="${i}"><span class="tab-icon">${ICONS[p.icon]}</span>${p.title}</button>`).join('');
   panelsEl.innerHTML = PRODUCTS.map((p, i) => `
     <div class="cat-panel${i===0?' active':''}" data-panel="${i}">
       <div class="cat-items-grid">
         ${p.items.map(item => `
           <div class="cat-item-card">
-            <div class="picon">${p.icon}</div>
+            <div class="picon">${ICONS[p.icon]}</div>
             <h4>${item}</h4>
             <a class="enquire" href="${waLink('Hi, I\'m interested in ' + item + ' from Vidhya Steel Furnitures.')}" target="_blank" rel="noopener">Enquire on WhatsApp →</a>
           </div>
@@ -396,15 +459,15 @@
 
   // Why choose us
   const WHY = [
-    { icon: '🛠️', title: 'Custom Fabrication', desc: 'Tailored steel and furniture solutions built to your exact specifications.' },
-    { icon: '💪', title: 'Durable Build Quality', desc: 'Solid construction using quality materials, built to last.' },
-    { icon: '💰', title: 'Competitive Pricing', desc: 'Direct-from-manufacturer pricing with no middleman markup.' },
-    { icon: '⚡', title: 'Quick Turnaround', desc: 'Efficient production to meet your timelines.' },
-    { icon: '🧾', title: 'GST Compliant Billing', desc: 'Proper GST invoices for every business purchase.' },
-    { icon: '📍', title: 'Local Kerala Service', desc: 'Based in Perinthalmanna, serving customers across the region.' },
+    { icon: 'tool', title: 'Custom Fabrication', desc: 'Tailored steel and furniture solutions built to your exact specifications.' },
+    { icon: 'strength', title: 'Durable Build Quality', desc: 'Solid construction using quality materials, built to last.' },
+    { icon: 'rupee', title: 'Competitive Pricing', desc: 'Direct-from-manufacturer pricing with no middleman markup.' },
+    { icon: 'zap', title: 'Quick Turnaround', desc: 'Efficient production to meet your timelines.' },
+    { icon: 'receipt', title: 'GST Compliant Billing', desc: 'Proper GST invoices for every business purchase.' },
+    { icon: 'pin', title: 'Local Kerala Service', desc: 'Based in Perinthalmanna, serving customers across the region.' },
   ];
   document.getElementById('whyGrid').innerHTML = WHY.map(w => `
-    <div class="why-card"><div class="wicon">${w.icon}</div><h4>${w.title}</h4><p>${w.desc}</p></div>
+    <div class="why-card reveal"><div class="wicon">${ICONS[w.icon]}</div><h4>${w.title}</h4><p>${w.desc}</p></div>
   `).join('');
 
   // FAQ accordion
@@ -418,7 +481,7 @@
   ];
   document.getElementById('faqList').innerHTML = FAQ.map((f, i) => `
     <div class="faq-item" data-faq="${i}">
-      <div class="faq-q">${f.q}<span class="chev">▾</span></div>
+      <div class="faq-q">${f.q}<span class="chev">${ICONS.chevron}</span></div>
       <div class="faq-a"><div class="faq-a-inner">${f.a}</div></div>
     </div>
   `).join('');
@@ -446,6 +509,33 @@
   const mainNav = document.getElementById('mainNav');
   menuToggle.addEventListener('click', () => mainNav.classList.toggle('open'));
   mainNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mainNav.classList.remove('open')));
+
+  // Fill every static icon placeholder from the same ICONS source used
+  // above -- one set of SVG definitions, no duplication.
+  document.querySelectorAll('[data-icon]').forEach(el => {
+    const svg = ICONS[el.dataset.icon];
+    if(svg) el.innerHTML = svg;
+  });
+
+  // Scroll-reveal: fade sections in as they're scrolled into view. Content
+  // is already fully visible in the HTML (see the .reveal CSS comment) --
+  // this only adds motion, it never hides anything from users without JS
+  // or from screen readers.
+  if('IntersectionObserver' in window){
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  } else {
+    // No IntersectionObserver support -- just show everything immediately
+    // rather than leaving it invisible.
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+  }
 </script>
 
 </body>
