@@ -545,7 +545,7 @@
     gShown = GALLERY.filter(g => gActive === 'All' || g.cat === gActive);
     gGrid.innerHTML = gShown.map((g, i) => `
       <article class="g-card reveal">
-        <button class="g-thumb" data-i="${i}" aria-label="Enlarge ${g.t}"><img src="images/${g.f}.jpg" alt="${g.t} - Vidhya Steel Furnitures, Perinthalmanna" loading="lazy" width="1200" height="900"></button>
+        <button class="g-thumb" data-i="${i}" aria-label="Enlarge ${g.t}"><img src="${g.f}.jpg" alt="${g.t} - Vidhya Steel Furnitures, Perinthalmanna" loading="lazy" width="1200" height="900"></button>
         <div class="g-body">
           <h4>${g.t}</h4><p>${g.d}</p>
           <a class="enquire" href="${waLink('Hi, I am interested in the ' + g.t + ' from Vidhya Steel Furnitures.')}" target="_blank" rel="noopener">Enquire on WhatsApp &rarr;</a>
@@ -566,7 +566,7 @@
   const lb = document.getElementById('lb'), lbImg = document.getElementById('lbImg'), lbCap = document.getElementById('lbCap');
   function showLb(i){
     lbIdx = (i + gShown.length) % gShown.length; const g = gShown[lbIdx];
-    lbImg.src = `images/${g.f}.jpg`; lbImg.alt = g.t;
+    lbImg.src = `${g.f}.jpg`; lbImg.alt = g.t;
     lbCap.innerHTML = `<strong>${g.t}</strong><br>${g.d}<br><a href="${waLink('Hi, I am interested in the ' + g.t + ' from Vidhya Steel Furnitures.')}" target="_blank" rel="noopener">Enquire on WhatsApp</a>`;
     lb.classList.add('open');
   }
