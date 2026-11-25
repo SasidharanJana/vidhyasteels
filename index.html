@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vidhya Steel Furnitures — Furniture &amp; Steel Fabrication, Perinthalmanna, Kerala</title>
-<meta name="description" content="Vidhya Steel Furnitures — Manufacturer of furniture, wooden furniture, stainless steel fabrication, office workstations, steel boxes and steel sheets. Based in Perinthalmanna, Kerala. Custom fabrication, GST-compliant billing.">
+<meta name="description" content="Vidhya Steel Furnitures — Manufacturer of furniture, stainless steel fabrication, office workstations, steel boxes and steel sheets. Based in Perinthalmanna, Kerala. Custom fabrication, GST-compliant billing.">
 
 <link rel="icon" href="./favicon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="./apple-touch-icon.png">
@@ -204,6 +204,47 @@
     section{padding:40px 16px;}
     .topbar .container{justify-content:center;text-align:center;}
   }
+
+  /* Work gallery */
+  .g-filters{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:28px;}
+  .g-filter{background:#fff;border:1.5px solid var(--border);border-radius:22px;padding:9px 18px;font-size:13px;font-weight:600;color:var(--steel-mid);cursor:pointer;}
+  .g-filter:hover{border-color:var(--teal);}
+  .g-filter:focus-visible,.g-thumb:focus-visible{outline:3px solid var(--amber);outline-offset:2px;}
+  .g-filter.active{background:var(--teal);border-color:var(--teal);color:#fff;}
+  .g-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  .g-card{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;}
+  .g-thumb{display:block;width:100%;padding:0;border:0;background:#e9edf0;cursor:zoom-in;aspect-ratio:4/3;overflow:hidden;}
+  .g-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s;}
+  .g-thumb:hover img{transform:scale(1.04);}
+  .g-body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:6px;flex:1;}
+  .g-body h4{font-size:15.5px;color:var(--steel-deep);margin:0;}
+  .g-body p{font-size:13.5px;color:var(--slate);margin:0;flex:1;}
+  .g-body .enquire{font-size:12.5px;font-weight:600;color:var(--teal);margin-top:6px;}
+  .g-body .enquire:hover{text-decoration:underline;}
+  .g-note{text-align:center;color:var(--slate);font-size:13px;margin-top:24px;}
+  .lb{position:fixed;inset:0;background:rgba(15,23,42,.92);display:none;align-items:center;justify-content:center;z-index:100;padding:20px;}
+  .lb.open{display:flex;}
+  .lb figure{margin:0;max-width:960px;width:100%;text-align:center;color:#fff;}
+  .lb img{max-width:100%;max-height:72vh;border-radius:8px;}
+  .lb figcaption{margin-top:12px;font-size:14px;}
+  .lb figcaption a{display:inline-block;margin-top:10px;background:#25D366;color:#fff;padding:9px 18px;border-radius:8px;font-weight:600;}
+  .lb-btn{position:absolute;background:rgba(255,255,255,.14);color:#fff;border:0;width:44px;height:44px;border-radius:50%;font-size:22px;cursor:pointer;}
+  .lb-btn:hover{background:rgba(255,255,255,.28);}
+  .lb-close{top:16px;right:16px;}.lb-prev{left:16px;top:50%;}.lb-next{right:16px;top:50%;}
+  @media(max-width:900px){.g-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:560px){.g-grid{grid-template-columns:1fr;}.lb-prev,.lb-next{top:auto;bottom:24px;}}
+
+  /* ---- Hero entrance (runs once on load) ---- */
+  @keyframes rise{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:none;}}
+  .hero .eyebrow,.hero h1,.hero .lede,.hero-ctas,.hero-stats{animation:rise .7s cubic-bezier(.2,.7,.2,1) both;}
+  .hero h1{animation-delay:.1s;}.hero .lede{animation-delay:.22s;}.hero-ctas{animation-delay:.34s;}.hero-stats{animation-delay:.46s;}
+  /* ---- Gallery cards: staggered reveal ---- */
+  .g-card.reveal{transition:opacity .55s ease,transform .55s ease,box-shadow .2s;}
+  .g-card:hover{box-shadow:0 10px 28px rgba(15,23,42,.12);}
+  @media (prefers-reduced-motion:reduce){
+    .hero .eyebrow,.hero h1,.hero .lede,.hero-ctas,.hero-stats{animation:none;}
+    html.js .reveal{opacity:1;transform:none;transition:none;}
+  }
 </style>
 </head>
 <body>
@@ -232,6 +273,7 @@
       <a href="#home">Home</a>
       <a href="#about">About Us</a>
       <a href="#products">Products</a>
+      <a href="#gallery">Our Work</a>
       <a href="#why-us">Why Choose Us</a>
       <a href="#faq">FAQ</a>
       <a href="#contact">Contact</a>
@@ -256,7 +298,7 @@
       </div>
       <div class="hero-stats">
         <div class="stat"><div class="num">2017</div><div class="lbl">Established</div></div>
-        <div class="stat"><div class="num">7+</div><div class="lbl">Product Lines</div></div>
+        <div class="stat"><div class="num">6+</div><div class="lbl">Product Lines</div></div>
         <div class="stat"><div class="num">100%</div><div class="lbl">GST Compliant</div></div>
         <div class="stat"><div class="num">Custom</div><div class="lbl">Fabrication</div></div>
       </div>
@@ -295,6 +337,26 @@
     <div id="catPanels"><!-- filled by JS --></div>
   </div>
 </section>
+
+
+<section id="gallery">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">OUR WORK</span>
+      <h2>Made In Our Perinthalmanna Workshop</h2>
+      <p>A look at recent pieces from the shop floor. Tap any photo to enlarge, and message us if you want something similar or made to your own size.</p>
+    </div>
+    <div class="g-filters" id="gFilters"></div>
+    <div class="g-grid" id="gGrid"></div>
+    <p class="g-note">Sizes, finish and fittings can be customised on request.</p>
+  </div>
+</section>
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Product photo">
+  <button class="lb-btn lb-close" id="lbClose" aria-label="Close">&times;</button>
+  <button class="lb-btn lb-prev" id="lbPrev" aria-label="Previous">&#8249;</button>
+  <button class="lb-btn lb-next" id="lbNext" aria-label="Next">&#8250;</button>
+  <figure><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure>
+</div>
 
 <section id="why-us">
   <div class="container">
@@ -355,7 +417,6 @@
           <div class="field"><label>What do you need? *</label>
             <select id="qRequirement">
               <option>Furniture</option>
-              <option>Wooden Furniture</option>
               <option>Home Furnishing Accessory</option>
               <option>Stainless Steel Fabrication</option>
               <option>Office Workstations</option>
@@ -398,7 +459,6 @@
     building: `<svg ${S}><rect x="4" y="3" width="16" height="18" rx="1"/><line x1="8" y1="7" x2="8" y2="7.01"/><line x1="12" y1="7" x2="12" y2="7.01"/><line x1="16" y1="7" x2="16" y2="7.01"/><line x1="8" y1="11" x2="8" y2="11.01"/><line x1="12" y1="11" x2="12" y2="11.01"/><line x1="16" y1="11" x2="16" y2="11.01"/><line x1="8" y1="15" x2="8" y2="15.01"/><line x1="12" y1="15" x2="12" y2="15.01"/><line x1="16" y1="15" x2="16" y2="15.01"/><path d="M9.5 21v-3h5v3"/></svg>`,
     map: `<svg ${S}><path d="M9 3 3 5.5v15L9 18l6 2.5 6-2.5v-15L15 5.5 9 3Z"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="5.5" x2="15" y2="20.5"/></svg>`,
     chair: `<svg ${S}><path d="M6 9V4h12v5"/><path d="M5 9h14l-1 6H6L5 9Z"/><line x1="7" y1="15" x2="6" y2="21"/><line x1="17" y1="15" x2="18" y2="21"/></svg>`,
-    wood: `<svg ${S}><rect x="3" y="8" width="18" height="8" rx="2"/><path d="M7 8v8M12 8v8M17 8v8"/></svg>`,
     home: `<svg ${S}><path d="M4 11.5 12 4l8 7.5"/><path d="M6 10v10h12V10"/><path d="M10 20v-6h4v6"/></svg>`,
     wrench: `<svg ${S}><path d="M14.7 6.3a4 4 0 1 0-5.4 5.4L4 17v3h3l5.3-5.3a4 4 0 0 0 5.4-5.4l-2.1 2.1-2-2Z"/></svg>`,
     briefcase: `<svg ${S}><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M8 8V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="3" y1="13" x2="21" y2="13"/></svg>`,
@@ -416,11 +476,10 @@
   // visual list and the tabbed category browser below. ----
   const PRODUCTS = [
     { icon: 'chair', title: 'Furniture', items: ['Steel Furniture Dealers', 'Furniture Dealers', 'Furniture Manufacturers'] },
-    { icon: 'wood', title: 'Wooden Furniture', items: ['Wooden Furniture Dealers', 'Imported Wooden Furniture Dealers'] },
     { icon: 'home', title: 'Home Furnishing Accessory', items: ['Steel Home Accessories'] },
-    { icon: 'wrench', title: 'Stainless Steel Fabrication', items: ['Stainless Steel Customised Fabrication'] },
+    { icon: 'wrench', title: 'Stainless Steel Fabrication', items: ['Stainless Steel Customised Fabrication', 'Hospital Beds & Examination Couches', 'Medical Trolleys & SS Sinks'] },
     { icon: 'briefcase', title: 'Office Workstations', items: ['Furniture Dealers (Economy)'] },
-    { icon: 'box', title: 'Steel Box', items: ['Steel Box'] },
+    { icon: 'box', title: 'Steel Box', items: ['Steel Box', 'Temple Donation Boxes (Hundi)'] },
     { icon: 'layers', title: 'Steel Sheets', items: ['Steel Sheet'] },
   ];
 
@@ -457,6 +516,73 @@
     panelsEl.querySelectorAll('.cat-panel').forEach(p => p.classList.toggle('active', p.dataset.panel === idx));
   });
 
+  // ---- Work gallery ----
+  const GALLERY = [
+    { f:'hospital-bed', cat:'Hospital Furniture', t:'Hospital Bed with Padded Panels', d:'Steel hospital bed with padded head, foot and side panels and a perforated steel bed deck.' },
+    { f:'ward-beds-and-couch', cat:'Hospital Furniture', t:'Ward Beds & Examination Couch', d:'Powder-coated ward beds and an examination couch with step, finished in white.' },
+    { f:'examination-couch', cat:'Hospital Furniture', t:'Examination Couch with Step Stool', d:'Steel examination couch with adjustable backrest and a pull-out step stool underneath.' },
+    { f:'examination-couch-step', cat:'Hospital Furniture', t:'Adjustable Backrest Couch', d:'Ratchet-adjustable backrest, sturdy frame and a fitted step for easy patient access.' },
+    { f:'ss-trolley', cat:'Medical Trolleys', t:'Two-Tier Stainless Steel Trolley', d:'Two-shelf SS trolley with a raised back rail and lockable castors.' },
+    { f:'dressing-trolley-bowl-bin', cat:'Medical Trolleys', t:'Dressing Trolley with Bowl & Pedal Bin', d:'SS dressing trolley with a side bowl holder and pedal bin, on lockable castors.' },
+    { f:'dressing-trolley-top', cat:'Medical Trolleys', t:'Dressing Trolley, Top View', d:'Smooth, easy-to-wipe stainless steel shelves with a bowl ring and bin on the side.' },
+    { f:'ss-sink-front', cat:'Stainless Steel Sinks', t:'Single-Bowl SS Wash Sink', d:'Deep single-bowl stainless steel sink with a backsplash and mixer tap.' },
+    { f:'ss-sink-top', cat:'Stainless Steel Sinks', t:'SS Sink with Drainboard', d:'Single-bowl sink with a side drainboard and a raised back edge.' },
+    { f:'ss-sink-tall-splash', cat:'Stainless Steel Sinks', t:'Wash Sink with Tall Backsplash', d:'Fully welded SS sink unit with a tall splash back and swan-neck tap.' },
+    { f:'hundi-plaque', cat:'Donation Boxes (Hundi)', t:'Temple Hundi with Name Plate', d:'Stainless steel donation box with a pagoda roof, engraved plate, coin slot and locking door.' },
+    { f:'hundi-pagoda', cat:'Donation Boxes (Hundi)', t:'Pagoda-Roof Donation Box', d:'Tall SS hundi with a sloped roof and a lockable collection door at the base.' },
+    { f:'hundi-box-lock', cat:'Donation Boxes (Hundi)', t:'Locking SS Donation Box', d:'Sturdy stainless steel box with a coin slot, hinged door and a bolt-and-lock latch.' },
+    { f:'hundi-compact', cat:'Donation Boxes (Hundi)', t:'Compact Hundi', d:'Compact stainless steel donation box with a slot, hinged door and a funnel-style roof opening.' },
+    { f:'ss-funnel', cat:'Other Fabrication', t:'Large SS Funnel', d:'Hand-formed stainless steel funnel with a mirror finish.' },
+    { f:'ss-rack', cat:'Other Fabrication', t:'SS Slatted Rack', d:'Welded stainless steel rack frame with flat slats and a cross brace.' },
+    { f:'ss-utility-cart', cat:'Other Fabrication', t:'SS Utility Cart', d:'Two-level stainless steel cart with a handle bar, built for carrying and storage.' },
+  ];
+  const gFilters = document.getElementById('gFilters');
+  const gGrid = document.getElementById('gGrid');
+  const gCats = ['All', ...new Set(GALLERY.map(g => g.cat))];
+  let gActive = 'All', gShown = [], lbIdx = 0;
+  gFilters.innerHTML = gCats.map((c, i) => `<button class="g-filter${i===0?' active':''}" data-c="${c}">${c}</button>`).join('');
+  function renderGallery(){
+    gShown = GALLERY.filter(g => gActive === 'All' || g.cat === gActive);
+    gGrid.innerHTML = gShown.map((g, i) => `
+      <article class="g-card reveal">
+        <button class="g-thumb" data-i="${i}" aria-label="Enlarge ${g.t}"><img src="images/${g.f}.jpg" alt="${g.t} - Vidhya Steel Furnitures, Perinthalmanna" loading="lazy" width="1200" height="900"></button>
+        <div class="g-body">
+          <h4>${g.t}</h4><p>${g.d}</p>
+          <a class="enquire" href="${waLink('Hi, I am interested in the ' + g.t + ' from Vidhya Steel Furnitures.')}" target="_blank" rel="noopener">Enquire on WhatsApp &rarr;</a>
+        </div>
+      </article>`).join('');
+  }
+  function revealCards(){
+    const cards = gGrid.querySelectorAll('.g-card');
+    if(!('IntersectionObserver' in window)){ cards.forEach(c => c.classList.add('in')); return; }
+    const o = new IntersectionObserver((es) => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); o.unobserve(e.target); } }), {threshold:.12});
+    cards.forEach((c, i) => { c.style.transitionDelay = (i % 3) * 90 + 'ms'; o.observe(c); });
+  }
+  gFilters.addEventListener('click', e => {
+    const b = e.target.closest('.g-filter'); if(!b) return;
+    gFilters.querySelectorAll('.g-filter').forEach(x => x.classList.remove('active'));
+    b.classList.add('active'); gActive = b.dataset.c; renderGallery(); revealCards();
+  });
+  const lb = document.getElementById('lb'), lbImg = document.getElementById('lbImg'), lbCap = document.getElementById('lbCap');
+  function showLb(i){
+    lbIdx = (i + gShown.length) % gShown.length; const g = gShown[lbIdx];
+    lbImg.src = `images/${g.f}.jpg`; lbImg.alt = g.t;
+    lbCap.innerHTML = `<strong>${g.t}</strong><br>${g.d}<br><a href="${waLink('Hi, I am interested in the ' + g.t + ' from Vidhya Steel Furnitures.')}" target="_blank" rel="noopener">Enquire on WhatsApp</a>`;
+    lb.classList.add('open');
+  }
+  gGrid.addEventListener('click', e => { const t = e.target.closest('.g-thumb'); if(t) showLb(+t.dataset.i); });
+  document.getElementById('lbClose').onclick = () => lb.classList.remove('open');
+  document.getElementById('lbPrev').onclick = () => showLb(lbIdx - 1);
+  document.getElementById('lbNext').onclick = () => showLb(lbIdx + 1);
+  lb.addEventListener('click', e => { if(e.target === lb) lb.classList.remove('open'); });
+  document.addEventListener('keydown', e => {
+    if(!lb.classList.contains('open')) return;
+    if(e.key === 'Escape') lb.classList.remove('open');
+    if(e.key === 'ArrowLeft') showLb(lbIdx - 1);
+    if(e.key === 'ArrowRight') showLb(lbIdx + 1);
+  });
+  renderGallery(); revealCards();
+
   // Why choose us
   const WHY = [
     { icon: 'tool', title: 'Custom Fabrication', desc: 'Tailored steel and furniture solutions built to your exact specifications.' },
@@ -477,7 +603,7 @@
     { q: 'Do you provide GST invoices?', a: 'Yes, we are GST registered and provide proper GST-compliant invoices for all business purchases.' },
     { q: 'What is your typical turnaround time?', a: 'This depends on the product and quantity — message us your requirement on WhatsApp and we will give you a realistic timeline before you order.' },
     { q: 'Can I get a price quote before ordering?', a: 'Yes — use the quote request form above or message us directly on WhatsApp with your requirement for a no-obligation quote.' },
-    { q: 'Do you make both wooden and steel furniture?', a: 'Yes, we manufacture both wooden furniture and steel furniture, along with stainless steel fabrication and office workstations.' },
+    { q: 'Do you make steel furniture?', a: 'Yes, we manufacture steel furniture, along with stainless steel fabrication and office workstations.' },
   ];
   document.getElementById('faqList').innerHTML = FAQ.map((f, i) => `
     <div class="faq-item" data-faq="${i}">
@@ -515,6 +641,18 @@
   document.querySelectorAll('[data-icon]').forEach(el => {
     const svg = ICONS[el.dataset.icon];
     if(svg) el.innerHTML = svg;
+  });
+
+  // Count-up for the hero numbers (2017, 7+, 100%)
+  document.querySelectorAll('.hero-stats .num').forEach(el => {
+    const m = el.textContent.match(/^(\d+)(\D*)$/);
+    if(!m || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const end = +m[1], suf = m[2], start = end > 1000 ? end - 40 : 0, t0 = performance.now(), dur = 1400;
+    (function tick(t){
+      const k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+      el.textContent = Math.round(start + (end - start) * e) + (k === 1 ? suf : '');
+      if(k < 1) requestAnimationFrame(tick);
+    })(t0);
   });
 
   // Scroll-reveal: fade sections in as they're scrolled into view. Content
